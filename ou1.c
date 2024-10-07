@@ -1,3 +1,4 @@
+/*Felix Loberg tfy24flg*/
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -48,15 +49,20 @@ while (exit == false)
 				/*Summera priserna*/
 				sumprice = sumprice + price;
 			}
-			/*Återställer summan när man avslutar loopen*/
+			/*Exkluderar inputen som används för att avsluta loopen*/
 			sumprice = sumprice - price;
+
+			/*Summerar priset med 2 decimaler*/
 			printf("\nSum in foreign currency: %.2f\n", sumprice);
+
+			/*Summerar priset omvandlat till SEK med 2 decimaler*/
 			float sumsek = sumprice * rate;
 			printf("Sum in SEK: %.2f\n", sumsek);
 		break;
 		
 		
 		case 3:
+			/*Avslutar programmet*/
 			exit = true;
 			printf("End of program!\n \n");
 		break;
