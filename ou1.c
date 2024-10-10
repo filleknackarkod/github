@@ -1,4 +1,8 @@
-/*Felix Loberg tfy24flg*/
+/*Shopping assistant
+Felix Loberg tfy24flg
+A program that lets user calculate a sum of prices of a foreign currency
+and convert it to a designated currency
+2024-10-10*/
 #include <stdio.h>
 #include <stdbool.h>
 
@@ -6,64 +10,68 @@ int main(void)
 {
 printf("Your shopping assistant \n ");
 
-/*Valutakurs*/
+/*Currency rate*/
 float rate = 1.00;
 
-/*Alternativ 1-3*/
-int n;
+/*Alternative 1-3*/
+int alt;
 
-/*Pris*/
-float price;
+/*Price*/
+float price = 0;
 
-/*Summa av priser*/
+/*Sum of prices*/
 float sumprice = 0;
 
-/*Variabeln visar om programmet ska avslutas*/
-bool exit = false;
-while (exit == false)
+/*If true, runs program. If false, exits program*/
+bool loop = true;
+
+while (loop)
 {
-	/*Skriver ut alternativen*/
+	/*Prints the menu*/
 	printf("\n1. Set exchange rate in SEK (current rate: %.2f)\n", rate);
 	printf("2. Read prices in the foreign currency\n");
 	printf("3. End\n \n");
 
-	/*Låter användare välja alternativ*/
+	/*Lets the user make a choice*/
 	printf("Enter your choice (1 - 3): ");
-	scanf("%d", &n);
+	scanf("%d", &alt);
 	printf("\n");
 
-	switch (n)
+	switch (alt)
 	{
+		/*Changes currency rate*/
 		case 1:
 			printf("Enter exchange rate: ");
 			scanf("%f", &rate);
 		break;
 		
 		
+		/*Function for summing prices and converting currency*/
 		case 2:
 			while (price >= 0)
 			{
 				printf("Enter price (finish with < 0): ");
 				scanf("%f", &price);
 
-				/*Summera priserna*/
-				sumprice = sumprice + price;
+				/*Sums prices unless user finishes*/
+				if (price >= 0)
+				{
+					sumprice += price;
+				}
 			}
-			/*Exkluderar inputen som används för att avsluta loopen*/
-			sumprice = sumprice - price;
 
-			/*Summerar priset med 2 decimaler*/
+			/*Prints results*/
 			printf("\nSum in foreign currency: %.2f\n", sumprice);
+			printf("Sum in SEK: %.2f\n", sumprice * rate);
 
-			/*Summerar priset omvandlat till SEK med 2 decimaler*/
-			float sumsek = sumprice * rate;
-			printf("Sum in SEK: %.2f\n", sumsek);
+			/*Resets price and sum of prices*/
+			price = 0;
+			sumprice = 0;
 		break;
 		
-		
+		/*Exits the program*/
 		case 3:
-			/*Avslutar programmet*/
-			exit = true;
+			loop = false;
 			printf("End of program!\n \n");
 		break;
 
